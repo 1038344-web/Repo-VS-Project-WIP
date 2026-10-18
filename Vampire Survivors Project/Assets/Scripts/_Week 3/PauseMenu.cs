@@ -27,7 +27,7 @@ public class PauseMenu : MonoBehaviour
         // Check whether Escape was pressed.
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-          if()
+          
                 // TODO: Check if the game is paused.
             
             {
