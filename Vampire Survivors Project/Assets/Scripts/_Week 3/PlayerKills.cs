@@ -26,8 +26,8 @@ public class PlayerKills : MonoBehaviour
 
     private void Start()
     {
-        // TODO: Call the function that updates the kills UI.
-
+        // Call the function that updates the kills UI.
+     UpdateKillsUI();
 
 
         if (showDebugLogs == true)
@@ -53,19 +53,19 @@ public class PlayerKills : MonoBehaviour
 
         // If the Add Kill key is pressed,
         // call the function that adds kills.
-        if (Keyboard.current[addKillKey].wasPressedThisFrame)
+        if (Keyboard.current.bKey.wasPressedThisFrame)
         {
-            // TODO: Call AddKills and give it debugAddAmount.
-
+            // Call AddKills and give it debugAddAmount.
+            AddKills(debugAddAmount);
 
         }
 
         // If the Reset Kills key is pressed,
         // call the function that resets the player's kills.
-        if (Keyboard.current[resetKillsKey].wasPressedThisFrame)
+        if (Keyboard.current.vKey.wasPressedThisFrame)
         {
-            // TODO: Call ResetKills.
-
+            // Call ResetKills.
+            ResetKills();
 
         }
     }
@@ -77,30 +77,32 @@ public class PlayerKills : MonoBehaviour
             return;
         }
 
-        // TODO: Add amount to the player's current kills.
+        // Add amount to the player's current kills.
+        currentKills += amount;   
 
 
+        // Call the function that updates the kills UI.
 
-        // TODO: Call the function that updates the kills UI.
-
-
+       UpdateKillsUI();
     }
 
     public void ResetKills()
     {
-        // TODO: Set the player's current kills back to 0.
+        // Set the player's current kills back to 0.
+
+        currentKills = 0;
 
 
 
-        // TODO: Call the function that updates the kills UI.
-
+        // Call the function that updates the kills UI.
+        UpdateKillsUI();
 
     }
 
     public void DebugAddKill()
     {
-        // TODO: Call AddKills and give it debugAddAmount.
-
+        // Call AddKills and give it debugAddAmount.
+        AddKills(debugAddAmount);
 
     }
 
@@ -111,19 +113,21 @@ public class PlayerKills : MonoBehaviour
             return;
         }
 
-        // TODO: Update the kills text using killsPrefix
+        // Update the kills text using killsPrefix
+        
         // and the player's current kills.
 
         if (killsText == null)
         {
             return;
         }
+        killsText.text = killsPrefix + currentKills.ToString();
 
         if (gameOverKillsText != null)
         {
-            // TODO: Display the player's total kills
+            //  Display the player's total kills
             // on the Game Over screen.
-
+            gameOverKillsText.text = killsPrefix + currentKills.ToString();
 
         }
     }

@@ -27,55 +27,46 @@ public class PauseMenu : MonoBehaviour
         // Check whether Escape was pressed.
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-          
-                // TODO: Check if the game is paused.
-            
+          if(isPaused == true)
             {
-
+                ResumeGame();
             }
-            // If it is, call ResumeGame().
-            // Otherwise, call PauseGame().
-
-
+            else
+            {
+                PauseGame();
+            }
+          
+            
         }
     }
 
     public void PauseGame()
     {
-        // TODO: Set isPaused to true.
-
-
-
-        // TODO: Show the pause menu.
-        // Hint: Use the .SetActive() function.
-
-
+        // Set isPaused to true.
+        isPaused = true;
+        pauseMenu.SetActive(true);
 
         // Pause the game.
         Time.timeScale = 0f;
 
-        // TODO: Print "Game Paused" to the Console.
-
+        // Print "Game Paused" to the Console.
+        Debug.Log("game is paused");
 
     }
 
     // Hint: Don't forget to hook this function up to the UI Button.
     public void ResumeGame()
     {
-        // TODO: Set isPaused to false.
+        // Set isPaused to false.
+        isPaused = false;
 
-
-
-        // TODO: Hide the pause menu.
-        // Hint: Use the .SetActive() function.
-
-
+        pauseMenu.SetActive(false);
 
         // Resume the game.
         Time.timeScale = 1f;
 
-        // TODO: Print "Game Resumed" to the Console.
-
+        // Print "Game Resumed" to the Console.
+        Debug.Log("Game Resumed");
 
     }
 
