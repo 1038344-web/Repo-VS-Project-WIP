@@ -42,16 +42,16 @@ public class MeleeSlash : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // TODO: Try to get the EnemyHealth component from the object that entered the trigger.
+        // Try to get the EnemyHealth component from the object that entered the trigger.
         EnemyHealth enemy = other.GetComponent<EnemyHealth>();
 
         // TODO: Check that enemy is not null.
         if (enemy != null)
         {
-            // TODO: Call the enemy's TakeDamage function and give it this slash's damage amount.
+            // Call the enemy's TakeDamage function and give it this slash's damage amount.
             enemy.TakeDamage(damage);
 
-            // TODO: If debug logs are enabled, print the enemy hit and damage dealt.
+            // If debug logs are enabled, print the enemy hit and damage dealt.
 
            if(showDebugLogs == true)
             {

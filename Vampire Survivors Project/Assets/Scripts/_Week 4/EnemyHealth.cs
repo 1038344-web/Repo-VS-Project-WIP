@@ -174,8 +174,11 @@ public class EnemyHealth : MonoBehaviour
 
         // Check whether the enemy's current health is 0 or less.
         // If it is, call th e Die function.
-        if(currentHP <= 0);
-        Die();
+        if(currentHP <= 0)
+        {
+          Die();    
+        }
+      
    
     }
 
