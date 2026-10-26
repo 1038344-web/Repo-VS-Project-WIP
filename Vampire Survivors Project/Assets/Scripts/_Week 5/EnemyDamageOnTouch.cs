@@ -26,6 +26,10 @@ public class EnemyDamageOnTouch : MonoBehaviour
         // TODO: Check if audioSource is null.
         // If it is, get the AudioSource component from this GameObject.
 
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
     }
 
@@ -35,11 +39,15 @@ public class EnemyDamageOnTouch : MonoBehaviour
         // has the Player tag.
         // If it does not, stop this function.
 
+        if (collision.collider.CompareTag("Player") == false)
+        {
+            return;
+        }
 
 
         // TODO: Get the PlayerHealth component from the
         // object involved in the collision.
-        PlayerHealth playerHealth = null;
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
 
 
 
@@ -48,8 +56,15 @@ public class EnemyDamageOnTouch : MonoBehaviour
         // - Damage the player using contactDamage.
         // - Call PlayHitSound.
         // - Print the damage dealt if debug logs are enabled.
-
-
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(contactDamage);
+            audioSource.PlayOneShot(hitSound);
+        }
+        if(showDebugLogs == true)
+        {
+            Debug.Log("Damage Dealt! " + contactDamage);
+        }
 
 
 
@@ -57,7 +72,7 @@ public class EnemyDamageOnTouch : MonoBehaviour
         if (applyKnockback == true)
         {
             // TODO: Get the Rigidbody2D attached to the player's collider.
-            Rigidbody2D playerRb = null;
+            Rigidbody2D playerRb = collision.collider.attachedRigidbody;
 
 
 
@@ -71,12 +86,16 @@ public class EnemyDamageOnTouch : MonoBehaviour
                 Vector2 targetPosition = playerRb.position + direction * knockbackDistance;
 
                 // TODO: Move the player's Rigidbody2D to targetPosition. Hint you'll need to use the Move Function of rigidbody.
+                playerRb.MovePosition(targetPosition);
 
 
 
                 // TODO: If debug logs are enabled,
                 // print the new knockback position.
-
+                if (showDebugLogs == true)
+                {
+                    Debug.Log("Knockback recieved at " + targetPosition);
+                }
 
             }
         }
@@ -86,22 +105,32 @@ public class EnemyDamageOnTouch : MonoBehaviour
     {
         // TODO: Check whether audioSource is null.
         // If it is, stop this function.
-
+        if(audioSource == null)
+        {
+            return;
+        }
 
 
         // TODO: Check whether hitSound is null.
         // If it is, stop this function.
-
+        if(hitSound == null)
+        {
+            return;
+        }
 
 
         // TODO: Play hitSound using the AudioSource
         // and the hitSoundVolume.
 
-
+        audioSource.PlayOneShot(hitSound, hitSoundVolume);
 
         // TODO: If debug logs are enabled,
         // print that the hit sound played.
 
+        if(showDebugLogs == true)
+        {
+            Debug.Log("hit sound has done its thing lmao");
 
+        }
     }
 }
