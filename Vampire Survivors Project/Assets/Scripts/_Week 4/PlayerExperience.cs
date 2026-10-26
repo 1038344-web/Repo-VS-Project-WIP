@@ -124,7 +124,7 @@ public class PlayerExperience : MonoBehaviour
 
         // TODO: Call the function that updates the XP UI.
 
-
+        UpdateXpUI();
     }
 
     private void SetupXpSlider()
@@ -162,10 +162,10 @@ public class PlayerExperience : MonoBehaviour
         }
 
         // TODO: Keep the slider's maximum value matched to the XP required for the next level.
-        xpSlider.maxValue = 0;
+        xpSlider.maxValue = xpToNextLevel;
 
         // TODO: Set the slider's current value to the player's current XP.
-        xpSlider.value = 0;
+        xpSlider.value = currentXP;
     }
 
     private void UpdateLevelUI()
@@ -181,11 +181,14 @@ public class PlayerExperience : MonoBehaviour
         }
 
         // TODO: Display the player's current level.
-        levelText.text = "";
+        levelText.text = level + ToString();
 
         // TODO: Check that gameOverLevelText is not null.
         // If it exists, display the level reached on the Game Over screen.
-
+        if(gameOverLevelText != null)
+        {
+            gameOverLevelText.text = level + ToString();
+        }
 
     }
 }

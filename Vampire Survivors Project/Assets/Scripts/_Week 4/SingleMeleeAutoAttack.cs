@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Tilemaps;
+using UnityEngine;
 
 public class SingleMeleeAutoAttack : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class SingleMeleeAutoAttack : MonoBehaviour
     [Header("Attack Settings")]
     public bool attacksEnabled = true;
     public int damage = 5;
-    public float cooldown = 1f;
+    public float cooldown = 2f;
 
     [Header("Slash Position")]
     public float slashOffsetX = 1f;
@@ -33,13 +34,16 @@ public class SingleMeleeAutoAttack : MonoBehaviour
     public bool showDebugLogs = true;
 
     [Header("Debug View")]
-    public float attackTimer = 0f;
+    public float attackTimer = 2f;
 
     private void Start()
     {
         // TODO: Check if playerSpriteRenderer is null.
         // If it is, get the SpriteRenderer from this GameObject or its children.
-
+        if (playerSpriteRenderer == null)
+        {
+            playerSpriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        }
 
 
         // Get the Animator if one has not been assigned.
@@ -50,7 +54,7 @@ public class SingleMeleeAutoAttack : MonoBehaviour
 
         // TODO: Set the attack timer to the cooldown value.
 
-
+        attackTimer = cooldown;
 
         if (showDebugLogs == true)
         {
@@ -75,14 +79,14 @@ public class SingleMeleeAutoAttack : MonoBehaviour
         if (faceRightByDefault == true)
         {
             // TODO: Set facingRight based on whether the SpriteRenderer is flipped.
-
-
+            facingRight = true;
+            
         }
         else
         {
             // TODO: Set facingRight based on whether the SpriteRenderer is flipped.
 
-
+            facingRight = false;
         }
     }
 
@@ -100,11 +104,11 @@ public class SingleMeleeAutoAttack : MonoBehaviour
         if (attackTimer <= 0f)
         {
             // TODO: Call the Attack function.
-
+            Attack();
 
 
             // TODO: Reset attackTimer to the cooldown value.
-
+            attackTimer = cooldown;
 
         }
     }
@@ -112,11 +116,11 @@ public class SingleMeleeAutoAttack : MonoBehaviour
     private void Attack()
     {
         // TODO: Call the function that performs the melee slash.
-
-
+        PerformSlash();
+         
 
         // TODO: Call the function that plays the attack animation.
-
+        PlayAttackAnimation();
 
     }
 
@@ -172,20 +176,27 @@ public class SingleMeleeAutoAttack : MonoBehaviour
         if (flipSlashWhenFacingLeft == true)
         {
             // TODO: Get the SpriteRenderer from the slash object.
-            SpriteRenderer slashRenderer = null;
+            SpriteRenderer slashRenderer = gameObject.GetComponent<SpriteRenderer>();
 
             // TODO: Check that slashRenderer is not null.
             // If it exists, set its flipX value based on facingRight.
+            if (slashRenderer != null)
+            {
+                slashRenderer.flipX = !faceRightByDefault;
 
+            }
 
         }
 
         // TODO: Get the MeleeSlash script from the slash object.
-        MeleeSlash slash = null;
+        MeleeSlash slash = slashPrefab.GetComponent<MeleeSlash>();
 
         // TODO: Check that slash is not null.
         // If it exists, call Initialize and give it the player's damage.
-
+        if (slash != null)
+        {
+            slash.Initialize(damage);
+        }
 
         if (showDebugLogs == true)
         {
