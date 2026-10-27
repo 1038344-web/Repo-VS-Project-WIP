@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: playerSpriteRenderer
       value: 
       objectReference: {fileID: 181675687}
+    - target: {fileID: 1948031967530412625, guid: 5321946108876674e969b3bfb89c0b53, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 181675687}
     - target: {fileID: 2407108004695959929, guid: 5321946108876674e969b3bfb89c0b53, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -498,6 +502,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1382355918685280040, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1389536071}
+    - target: {fileID: -1382355918685280040, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 919782567}
     - target: {fileID: 2248978954845707533, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.555
@@ -538,6 +550,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3448121597785604173, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642167476853647212, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642167476853647212, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028387964393524517, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: playerKills
+      value: 
+      objectReference: {fileID: 1389536075}
+    - target: {fileID: 7028387964393524517, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: playerMoney
+      value: 
+      objectReference: {fileID: 1389536076}
+    - target: {fileID: 7028387964393524517, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: playerExperience
+      value: 
+      objectReference: {fileID: 1389536077}
     - target: {fileID: 8207825158515281786, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1023,11 +1059,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!212 &919782567 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6703422934471519277, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+  m_PrefabInstance: {fileID: 849595753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1389536071 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2708514085674736062, guid: 5321946108876674e969b3bfb89c0b53, type: 3}
   m_PrefabInstance: {fileID: 340654398}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1389536075 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8494038984796728227, guid: 5321946108876674e969b3bfb89c0b53, type: 3}
+  m_PrefabInstance: {fileID: 340654398}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f96766431900a43b796722b328ca31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerKills
+--- !u!114 &1389536076 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3829824428525352384, guid: 5321946108876674e969b3bfb89c0b53, type: 3}
+  m_PrefabInstance: {fileID: 340654398}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec32c281976d8a4690c525a00b3ecdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoney
+--- !u!114 &1389536077 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8667591997282453061, guid: 5321946108876674e969b3bfb89c0b53, type: 3}
+  m_PrefabInstance: {fileID: 340654398}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17afaa48e3746ef458eb85a450ee3a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerExperience
 --- !u!1 &1428385756 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 857073568758900887, guid: 05f6b443330f3e142bbfdcbf82a7381a, type: 3}
@@ -3492,6 +3566,6 @@ SceneRoots:
   - {fileID: 787735813}
   - {fileID: 620449587063578668}
   - {fileID: 129853457323692286}
-  - {fileID: 1702675710901875671}
   - {fileID: 849595753}
+  - {fileID: 1702675710901875671}
   - {fileID: 1935491223}

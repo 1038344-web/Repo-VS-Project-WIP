@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
 
         // TODO: Call the function that hides the Game Over screen.
-
+        
 
 
         // TODO: Call the function that shows the In Game screen.

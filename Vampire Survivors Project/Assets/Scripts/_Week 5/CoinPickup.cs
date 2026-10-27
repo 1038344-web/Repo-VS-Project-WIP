@@ -20,7 +20,7 @@ public class CoinPickup : MonoBehaviour
 
         // TODO: Check that col is not null.
         // If it exists, set the Collider2D to be a trigger.
-        if (col == null)
+        if (col != null)
         {
             col.isTrigger = true;
         }

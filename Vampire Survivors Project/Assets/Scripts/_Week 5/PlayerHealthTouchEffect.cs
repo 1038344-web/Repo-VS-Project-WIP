@@ -25,45 +25,87 @@ public class PlayerHealthTouchEffect : MonoBehaviour
 
     private void Start()
     {
-        // TODO: Check if audioSource is null.
+        // Check if audioSource is null.
         // If it is, get the AudioSource component from this GameObject.
-
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // TODO: Check whether the object that entered the trigger
+        // Check whether the object that entered the trigger
         // has the Player tag.
-        // If it does not, stop this function.
+        // If it does not, stop this function. 
 
-
-
-        // TODO: Get the PlayerHealth component from the object
+        // Get the PlayerHealth component from the object
         // that entered the trigger.
-        PlayerHealth playerHealth = null;
 
-
-
-        // TODO: Check whether playerHealth is null.
+        // Check whether playerHealth is null.
         // If it is, stop this function.
 
-
-
-        // TODO: Check whether healthChange is greater than 0.
+        // Check whether healthChange is greater than 0.
         // If it is:
         // - Heal the player by healthChange.
-        // - Print the amount healed if debug logs are enabled.
+        // - Print the amount healed if debug logs are enabled.  
 
-
-
-
-
-        // TODO: Otherwise, check whether healthChange is less than 0.
+        // Otherwise, check whether healthChange is less than 0.
         // If it is:
         // - Damage the player using the positive version of healthChange.
         // - Print the amount of damage if debug logs are enabled.
 
+
+
+        if (other.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+
+            if (playerHealth == null)
+            {
+                return;
+            }
+
+
+            if (healthChange > 0)
+            {
+                playerHealth.Heal(healthChange);
+
+                if (showDebugLogs == true)
+                {
+                    Debug.Log("healed by " + healthChange);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (healthChange < 0)
+                {
+                    playerHealth.TakeDamage(healthChange);
+
+                    if (showDebugLogs == true)
+                    {
+                        Debug.Log("player damaged by" + healthChange);
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+
+                }
+            }
+
+
+        }
+        else
+        {
+            return;
+        }
 
 
 
@@ -71,13 +113,19 @@ public class PlayerHealthTouchEffect : MonoBehaviour
         // TODO: Otherwise, healthChange must be 0.
         // If debug logs are enabled, print that no effect occurred.
 
+        if (healthChange != 0)
+        {
+            healthChange = 0;
+        }
+
+
 
 
 
 
         // TODO: Call the function that plays the feedback.
 
-
+        PlayFeedback();
 
         // TODO: Check whether destroyAfterTouch is true.
         if (destroyAfterTouch == true)
@@ -99,7 +147,10 @@ public class PlayerHealthTouchEffect : MonoBehaviour
 
         // TODO: Check that audioSource and touchSound are not null.
         // If they exist, play touchSound using the AudioSource.
-
+        if (audioSource & touchSound != null)
+        {
+            audioSource.PlayOneShot(touchSound);
+        }
 
     }
 }

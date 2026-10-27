@@ -76,17 +76,17 @@ public class SingleMeleeAutoAttack : MonoBehaviour
         }
 
         // TODO: Check whether the player's sprite faces right by default.
-        if (faceRightByDefault == true)
+        if(playerSpriteRenderer.flipX == true)
         {
             // TODO: Set facingRight based on whether the SpriteRenderer is flipped.
-            facingRight = true;
+            facingRight = false;
             
         }
         else
         {
             // TODO: Set facingRight based on whether the SpriteRenderer is flipped.
 
-            facingRight = false;
+            facingRight = true;
         }
     }
 
@@ -166,6 +166,8 @@ public class SingleMeleeAutoAttack : MonoBehaviour
         float direction = facingRight ? 1f : -1f;
 
         Vector3 localSpawnPosition = new Vector3(slashOffsetX * direction, slashOffsetY, 0f);
+
+        Debug.Log(direction);
 
         // Create the slash as a child of the player.
         GameObject slashObj = Instantiate(slashPrefab, transform);

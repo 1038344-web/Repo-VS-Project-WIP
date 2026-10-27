@@ -192,7 +192,7 @@ public class EnemyHealth : MonoBehaviour
 
         // Check that both audioSource and hitSound are not null.
         // If they exist, play hitSound using the AudioSource.
-        if(audioSource || hitSound != null)
+        if(audioSource & hitSound != null)
         {
          audioSource.PlayOneShot(hitSound);
         }
@@ -287,7 +287,7 @@ public class EnemyHealth : MonoBehaviour
         }
 
 
-        // Check that playerKills is not null.
+        // Check that playerKills is not null.d
         // If it exists, call AddKills and give it killReward.
         if(playerKills != null)
         {
