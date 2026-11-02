@@ -58,9 +58,12 @@ public class PlayerHealthTouchEffect : MonoBehaviour
 
 
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") == false)
         {
-            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            return;
+        }
+
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
             if (playerHealth == null)
             {
@@ -76,48 +79,27 @@ public class PlayerHealthTouchEffect : MonoBehaviour
                 {
                     Debug.Log("healed by " + healthChange);
                 }
-                else
+                else if (healthChange < 0)
                 {
-                    return;
-                }
-            }
-            else
-            {
-                if (healthChange < 0)
-                {
-                    playerHealth.TakeDamage(healthChange);
+                    playerHealth.Heal(-healthChange);
 
                     if (showDebugLogs == true)
                     {
-                        Debug.Log("player damaged by" + healthChange);
+                        Debug.Log("player damaged by" + -healthChange);
                     }
-                    else
-                    {
-                        return;
-                    }
-
-
+                    else if (showDebugLogs == true)
+                        {
+                         Debug.Log("player damaged by" + -healthChange);
+                        }
+           
                 }
             }
-
-
-        }
-        else
-        {
-            return;
-        }
-
-
 
 
         // TODO: Otherwise, healthChange must be 0.
         // If debug logs are enabled, print that no effect occurred.
 
-        if (healthChange != 0)
-        {
-            healthChange = 0;
-        }
-
+      
 
 
 

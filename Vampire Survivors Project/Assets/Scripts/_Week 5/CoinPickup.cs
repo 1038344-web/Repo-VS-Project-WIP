@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -14,7 +15,7 @@ public class CoinPickup : MonoBehaviour
     private void Awake()
     {
         // TODO: Get the Collider2D component from this GameObject.
-        Collider2D col = gameObject.GetComponent <Collider2D> ();
+        Collider2D col = GetComponent<Collider2D>();
 
 
 
@@ -32,41 +33,51 @@ public class CoinPickup : MonoBehaviour
         // TODO: Check whether the object that entered the trigger
         // has the Player tag.
         // If it does not, stop this function.
-        if (other == null)
+        if (other.CompareTag("Player") == false)
         {
             return;
         }
-
-
-        // TODO: Get the PlayerMoney component from the object
-        // that entered the trigger.
-        PlayerMoney money = other.GetComponent <PlayerMoney>();
-
-
-
-        // TODO: If money is null, try to find the
-        // PlayerMoney component in the scene.
-        if (money == null)
-        {
-            money = other.GetComponent<PlayerMoney>();
-        }
-
-
-        // TODO: Check that money is not null.
-        // If it exists:
-        // - Add moneyAmount to the player's money.
+        
         
 
-        if (money != null)
-        {
-            money.currentMoney += moneyAmount;
+            // TODO: Get the PlayerMoney component from the object
+            // that entered the trigger.
+            PlayerMoney money = other.GetComponent<PlayerMoney>();
+
+
+
+            // TODO: If money is null, try to find the
+            // PlayerMoney component in the scene.
+            if (money == null)
+            {
+                money = other.GetComponent<PlayerMoney>();
+            }
+
+
+            // TODO: Check that money is not null.
+            // If it exists:
+            // - Add moneyAmount to the player's money.
+
+
+            if (money != null)
+            {
+            money.AddMoney(moneyAmount);
+                if (showDebugLogs == true)
+                { 
+                    Debug.Log ("coin collected, money amount is " + moneyAmount);
+                }
+               
+            }
+            
+          
+
+
+
+            // Remove the coin after it has been collected.
+            Destroy(gameObject);
         }
-
-        Debug.Log("coin collected, money amount is " + money.currentMoney);
-
-
-
-        // Remove the coin after it has been collected.
-        Destroy(gameObject);
     }
-}
+
+
+
+

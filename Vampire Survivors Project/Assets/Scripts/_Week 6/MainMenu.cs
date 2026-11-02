@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     public void LoadScene()
     {
         // TODO: Load the scene stored in firstSceneName.
-
+        SceneManager.LoadScene("Main Game");
 
     }
 

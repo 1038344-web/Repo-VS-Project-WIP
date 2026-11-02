@@ -184,7 +184,7 @@ public class SingleMeleeAutoAttack : MonoBehaviour
             // If it exists, set its flipX value based on facingRight.
             if (slashRenderer != null)
             {
-                slashRenderer.flipX = !faceRightByDefault;
+                slashRenderer.flipX = facingRight == false;
 
             }
 

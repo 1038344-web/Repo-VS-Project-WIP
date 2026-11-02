@@ -145,14 +145,14 @@ public class PlayerMoney : MonoBehaviour
 
         // Update the money text using moneyPrefix
         // and the player's current money.
-        moneyText.text = moneyPrefix + currentMoney.ToString();
+        moneyText.text = moneyPrefix + currentMoney;
 
 
         if (gameOverMoneyText != null)
         {
             // Display the player's current money
             // on the Game Over screen.
-            gameOverMoneyText.text = moneyPrefix + currentMoney.ToString();
+            gameOverMoneyText.text = "Total Money " + currentMoney;
         }
     }
 }

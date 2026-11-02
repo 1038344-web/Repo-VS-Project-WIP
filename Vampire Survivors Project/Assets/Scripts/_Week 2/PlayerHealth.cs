@@ -213,7 +213,7 @@ public class PlayerHealth : MonoBehaviour
 
         // Check whether the player's health is below zero.
         // If it is, set the player's health to zero.
-        if(currentHP <= 0)
+        if(currentHP < 0)
         {
             currentHP = 0;
         }

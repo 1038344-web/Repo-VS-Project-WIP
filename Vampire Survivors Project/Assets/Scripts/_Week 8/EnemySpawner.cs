@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -45,62 +46,95 @@ public class EnemySpawner : MonoBehaviour
         // TODO: Check if audioSource is null.
         // If it is, get the AudioSource component from this GameObject.
 
-
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
         // TODO: Check if animator is null.
         // If it is, get the Animator component from this GameObject.
 
-
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
 
         // TODO: Check if gameManager is null.
         // If it is, find the GameManager in the scene.
 
+        if (gameManager == null)
+        {
+            gameManager = GetComponent<GameManager>();
+        }
 
     }
 
     private void Start()
     {
         // TODO: Call the function that plays the idle animation.
-
+        animator.Play(idleAnimationName);
 
 
         // TODO: If debug logs are enabled, print that the EnemySpawner has started.
-
+        if (showDebugLogs == true)
+        {
+            Debug.Log("EnemySpawner has begun");
+        }
 
 
         // TODO: Check that gameManager is not null.
         // If it exists, call AddSpawner.
-
+        if (gameManager != null)
+        {
+            gameManager.AddSpawner();
+        }
 
     }
 
     private void Update()
     {
         // TODO: Call the function that handles the debug input.
-
+        HandleDebugInput();
 
 
         // TODO: Check whether spawning is disabled.
         // If it is, stop this function.
-
+        if (spawningEnabled == false)
+        {
+            return;
+        }
 
 
         // TODO: Check whether enemyPrefab is null.
         // If it is:
         // - Print a warning if debug logs are enabled.
         // - Stop this function.
+        if (enemyPrefab == null)
+        {
+            if (showDebugLogs == true)
+            {
+                Debug.Log("WARNING: enemyPrefab is Null");
+            }
+            return;
+        }
+
 
 
 
         // TODO: Add Time.deltaTime to spawnTimer.
-
+        spawnTimer = spawnTimer + Time.deltaTime;
 
 
         // TODO: Check whether spawnTimer is greater than or equal to spawnInterval.
         // If it is:
         // - Reset spawnTimer to 0.
         // - Call SpawnEnemy.
+        if (spawnTimer >= spawnInterval)
+        {
+            spawnTimer = 0f;
 
+            SpawnEnemy();
+        }
 
     }
 
@@ -108,14 +142,24 @@ public class EnemySpawner : MonoBehaviour
     {
         // TODO: Check whether playIdleAnimationOnStart is false.
         // If it is, stop this function.
-
+        if (playIdleAnimationOnStart == false)
+        {
+            return;
+        }
 
 
         // TODO: Check whether animator is null.
         // If it is:
         // - Print a warning if debug logs are enabled.
         // - Stop this function.
-
+        if (animator == null)
+        {
+            if (showDebugLogs == true)
+            {
+                Debug.Log("WARNING: animator is null");
+            }
+            return;
+        }
 
 
         // TODO: Check whether idleAnimationName is empty.
@@ -123,15 +167,25 @@ public class EnemySpawner : MonoBehaviour
         // If it is:
         // - Print a warning if debug logs are enabled.
         // - Stop this function.
-
+        if (string.IsNullOrEmpty(idleAnimationName) == false)
+        {
+            if (showDebugLogs == true)
+            {
+                Debug.Log("WARNING: idleAnimationName is empty");
+            }
+            return;
+        }
 
 
         // TODO: Play the animation stored in idleAnimationName.
-
+        idleAnimationName = "idle";
 
 
         // TODO: If debug logs are enabled, print the animation being played.
-
+        if (showDebugLogs == true)
+        {
+            Debug.Log("animation: idle is playing");
+        }
 
     }
 
@@ -139,20 +193,31 @@ public class EnemySpawner : MonoBehaviour
     {
         // TODO: Check whether debug keys are disabled.
         // If they are, stop this function.
-
+        if (enableDebugKeys != true)
+        {
+            return;
+        }
 
 
         // TODO: Check whether Keyboard.current is null.
         // If it is, stop this function.
-
+        if (Keyboard.current == null)
+        {
+            return;
+        }
 
 
         // TODO: Check whether toggleSpawnKey was pressed.
         // If it was:
         // - Toggle spawningEnabled between true and false.
         // - Print the new value if debug logs are enabled.
+        if (Keyboard.current[toggleSpawnKey].isPressed)
+       
+    } 
 
-
+           
+            
+       
 
         // TODO: Check whether spawnOnceKey was pressed.
         // If it was:
@@ -165,7 +230,7 @@ public class EnemySpawner : MonoBehaviour
         // If it was, call DestroySpawnedEnemies.
 
 
-    }
+         
 
     public void StopSpawning()
     {

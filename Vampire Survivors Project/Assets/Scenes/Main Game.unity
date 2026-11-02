@@ -571,9 +571,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1389536076}
     - target: {fileID: 7028387964393524517, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: coinDropChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028387964393524517, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 919782567}
+    - target: {fileID: 7028387964393524517, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
       propertyPath: playerExperience
       value: 
       objectReference: {fileID: 1389536077}
+    - target: {fileID: 7028387964393524517, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: onDie.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028387964393524517, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: 5a72a0579e2e0ea44b45900aaa9d8e55, type: 3}
+    - target: {fileID: 7028387964393524517, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
+      propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8207825158515281786, guid: 8ff923f66ffef6a48a59aea7c62edb6c, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -3234,6 +3254,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7024497421646747180, guid: b4a1302468ac2b240b964808c28c07ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524646636983836109, guid: b4a1302468ac2b240b964808c28c07ee, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524646636983836109, guid: b4a1302468ac2b240b964808c28c07ee, type: 3}
+      propertyPath: m_UsedByEffector
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

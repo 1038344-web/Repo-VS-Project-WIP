@@ -53,7 +53,7 @@ public class PlayerKills : MonoBehaviour
 
         // If the Add Kill key is pressed,
         // call the function that adds kills.
-        if (Keyboard.current.bKey.wasPressedThisFrame)
+        if (Keyboard.current[addKillKey].wasPressedThisFrame)
         {
             // Call AddKills and give it debugAddAmount.
             AddKills(debugAddAmount);
@@ -62,7 +62,7 @@ public class PlayerKills : MonoBehaviour
 
         // If the Reset Kills key is pressed,
         // call the function that resets the player's kills.
-        if (Keyboard.current.vKey.wasPressedThisFrame)
+        if (Keyboard.current[resetKillsKey].wasPressedThisFrame)
         {
             // Call ResetKills.
             ResetKills();
@@ -121,13 +121,13 @@ public class PlayerKills : MonoBehaviour
         {
             return;
         }
-        killsText.text = killsPrefix + currentKills.ToString();
+        killsText.text = killsPrefix + currentKills;
 
         if (gameOverKillsText != null)
         {
             //  Display the player's total kills
             // on the Game Over screen.
-            gameOverKillsText.text = killsPrefix + currentKills.ToString();
+            gameOverKillsText.text = "Total kills: " + currentKills;
 
         }
     }

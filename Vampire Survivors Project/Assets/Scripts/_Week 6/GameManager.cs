@@ -37,15 +37,17 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
 
         // TODO: Call the function that hides the Game Over screen.
-        
-
+        ReturnToStartMenu();
 
         // TODO: Call the function that shows the In Game screen.
-
+        ShowInGameScreen(enabled);
 
 
         // TODO: If debug logs are enabled, print the starting spawner count.
-
+        if (showDebugLogs == true)
+        {
+            Debug.Log("starting spawned amount is " + spawnerCount);
+        }
 
     }
 
@@ -66,24 +68,24 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (Keyboard.current[addSpawnerKey].wasPressedThisFrame)
+        if (Keyboard.current.equalsKey.wasPressedThisFrame)
         {
             // TODO: Call the function that adds a spawner.
-
+            AddSpawner();
 
         }
 
-        if (Keyboard.current[removeSpawnerKey].wasPressedThisFrame)
+        if (Keyboard.current.minusKey.wasPressedThisFrame)
         {
             // TODO: Call the function that removes a spawner.
-
+            RemoveSpawner();
 
         }
 
-        if (Keyboard.current[gameOverKey].wasPressedThisFrame)
+        if (Keyboard.current.gKey.wasPressedThisFrame)
         {
             // TODO: Call the GameOver function.
-
+            GameOver();
 
         }
     }
@@ -93,41 +95,52 @@ public class GameManager : MonoBehaviour
         // TODO: Check whether the game is already over.
         // If it is, stop this function.
 
+        if (gameIsOver == true)
+        {
+            return;
+        }
+        else
+            gameIsOver = true;
+        // Set gameIsOver to true.
+        // Checks if pauseOnDeath is true, if it is, pauses game, Hides inGameScreen, Shows gameOverScreen and prints a debug Log
 
+        inGameScreen.SetActive(false);
 
-        // TODO: Set gameIsOver to true.
+        gameOverScreen.SetActive(true);
 
+        if (pauseOnDeath == true)
+        {
+            Time.timeScale = 0f;
+        }
 
+        if (showDebugLogs == true)
+        {
+            Debug.Log("GameManager: Game Over");
 
-        // TODO: Hide the In Game screen.
-
-
-
-        // TODO: Show the Game Over screen.
-
-
-
-        // TODO: Check whether pauseOnDeath is true.
-        // If it is, pause the game by setting Time.timeScale to 0.
-
-
-
-        // TODO: If debug logs are enabled, print "GameManager: Game Over.".
-
+        }
 
     }
+        
+
+    
 
     public void ShowGameOverScreen(bool enabled)
     {
-        // TODO: Check that gameOverScreen is not null.
-        // If it exists, use SetActive and pass in enabled.
+       //checks if gameOverScreen is not null, if it isnt, then sets it as active using the bool value (?)
 
-
+        if (gameOverScreen != null)
+        {
+            gameOverScreen.SetActive(enabled);
+        }
     }
 
     public void ShowInGameScreen(bool enabled)
     {
         // TODO: Check that inGameScreen is not null.
+        if (inGameScreen != null)
+        {
+            inGameScreen.SetActive(enabled);
+        }
         // If it exists, use SetActive and pass in enabled.
 
 
@@ -141,11 +154,14 @@ public class GameManager : MonoBehaviour
         }
 
         // TODO: Increase spawnerCount by 1.
-
+        spawnerCount += 1;
 
 
         // TODO: If debug logs are enabled, print the current spawner count.
-
+        if(showDebugLogs == true)
+        {
+            Debug.Log("current spawner count is " + spawnerCount);
+        }
 
     }
 
@@ -157,21 +173,30 @@ public class GameManager : MonoBehaviour
         }
 
         // TODO: Decrease spawnerCount by 1.
-
+        spawnerCount -= 1;
 
 
         // TODO: Check whether spawnerCount is below 0.
         // If it is, set spawnerCount back to 0.
-
+        if (spawnerCount <= 0)
+        {
+            spawnerCount = 0;
+        }
 
 
         // TODO: If debug logs are enabled, print the current spawner count.
-
+        if (showDebugLogs == true)
+        {
+            Debug.Log("current spawner count is " + spawnerCount);
+        }
 
 
         // TODO: Check whether spawnerCount is 0 or less.
         // If it is, call GameOver.
-
+        if (spawnerCount <= 0)
+        {
+            GameOver();
+        }
 
     }
 
@@ -189,12 +214,20 @@ public class GameManager : MonoBehaviour
     public void ReturnToStartMenu()
     {
         // TODO: Make sure the game is running again.
+        if (gameIsOver == true)
+        {
+            gameIsOver = false;
 
+            if (Time.timeScale <= 0f)
+            {
+                Time.timeScale = 1f;
+            }
+        }
 
 
         // TODO: Load Scene 0.
         // Use the Retry function above as an example.
 
-
+        SceneManager.LoadScene("0");
     }
 }

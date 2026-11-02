@@ -47,7 +47,7 @@ public class EnemyDamageOnTouch : MonoBehaviour
 
         // TODO: Get the PlayerHealth component from the
         // object involved in the collision.
-        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        PlayerHealth playerHealth = collision.collider.GetComponent<PlayerHealth>();
 
 
 
@@ -59,7 +59,7 @@ public class EnemyDamageOnTouch : MonoBehaviour
         if (playerHealth != null)
         {
             playerHealth.TakeDamage(contactDamage);
-            audioSource.PlayOneShot(hitSound);
+            PlayHitSound();
         }
         if(showDebugLogs == true)
         {
