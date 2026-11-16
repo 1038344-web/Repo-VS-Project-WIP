@@ -57,7 +57,7 @@ public class EnemyChase : MonoBehaviour
             // If it exists, set target to the player's Transform.
             if(playerObject != null)
             {
-
+                target = playerObject.transform;
             }
 
         }

@@ -64,7 +64,7 @@ public class PlayerExperience : MonoBehaviour
         }
 
         // If the debug XP key is pressed, add the debug XP amount.
-        if (Keyboard.current.jKey.wasPressedThisFrame)
+        if (Keyboard.current[debugKey].wasPressedThisFrame)
         {
             // Call AddXP and give it debugXpAmount.
             AddXP(debugXpAmount);
@@ -91,15 +91,15 @@ public class PlayerExperience : MonoBehaviour
         // Call the function that updates the XP UI.
         UpdateLevelUI();
 
-        
 
+        
     }
 
     private void LevelUp()
     {
         // TODO: Remove the required XP from the player's current XP.
 
-       currentXP = currentXP -= xpToNextLevel;
+        currentXP -= xpToNextLevel;
 
         // TODO: Increase the player's level by 1.
 
@@ -114,12 +114,15 @@ public class PlayerExperience : MonoBehaviour
 
 
         // TODO: Increase the XP required for the next level by 25.
-        xpToNextLevel = xpToNextLevel += 25;
+        xpToNextLevel += 25;
 
 
         // Check whether the player still has enough XP to level up again
         // Recursion, treat it like a bomb, extreme caution
-        LevelUp();
+        if(currentXP >= xpToNextLevel)
+        {
+            LevelUp();
+        }
 
 
         // TODO: Call the function that updates the XP UI.
@@ -146,7 +149,7 @@ public class PlayerExperience : MonoBehaviour
         xpSlider.maxValue = xpToNextLevel;
 
         // TODO: Set the slider's current value to the player's current XP.
-        xpSlider.value = 0;
+        xpSlider.value = currentXP;
     }
 
     private void UpdateXpUI()

@@ -76,7 +76,7 @@ public class EnemyHealth : MonoBehaviour
 
         // TODO: Check if audioSource is null.
         // If it is, get the AudioSource component from this GameObject.
-        if(audioSource = null)
+        if(audioSource == null)
         {
           audioSource = GetComponent<AudioSource>();
         }
@@ -84,25 +84,26 @@ public class EnemyHealth : MonoBehaviour
 
         // TODO: Check if playerExperience is null.
         // If it is, find the PlayerExperience component in the scene.
-        if(playerExperience = null)
+        if(playerExperience == null)
         {
-            playerExperience = GetComponent<PlayerExperience>();
+            playerExperience = FindFirstObjectByType<PlayerExperience>();
         }
 
 
         // TODO: Check if playerMoney is null.
         // If it is, find the PlayerMoney component in the scene.
 
-        if(playerMoney = null)
+        if(playerMoney == null)
         {
           playerMoney = GetComponent<PlayerMoney>();
         }
 
         // TODO: Check if playerKills is null.
         // If it is, find the PlayerKills component in the scene.
-        if(playerKills = null)
+        if(playerKills == null)
         {
-          playerKills = GetComponent<PlayerKills>();
+          playerKills = FindFirstObjectByType<PlayerKills>();
+            Debug.LogWarning("playerKill got");
         }
 
     }
@@ -257,7 +258,7 @@ public class EnemyHealth : MonoBehaviour
 
         // Call the function that plays the death sound.
 
-        PlayDeathSound();
+      //  PlayDeathSound();
 
         // Invoke any functions connected to the On Die event in the Inspector.
         // We will look at how UnityEvents work in more detail in later weeks.
@@ -287,12 +288,11 @@ public class EnemyHealth : MonoBehaviour
         }
 
 
-        // Check that playerKills is not null.d
+        // Check that playerKills is not null.
         // If it exists, call AddKills and give it killReward.
-        if(playerKills != null)
-        {
+        
             playerKills.AddKills(killReward);
-        }
+        
 
     }
 
@@ -339,10 +339,9 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-     private void PlayDeathSound()
-    {
-       if(audioSource || deathSound == null)
-       audioSource.PlayOneShot(deathSound);
-
-    }
+    //private void PlayDeathSound()
+    //{
+    //    //if(audioSource || deathSound == null)
+    //    //audioSource.PlayOneShot(deathSound);
+    //}
 }
